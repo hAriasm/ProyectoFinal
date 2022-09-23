@@ -1,0 +1,252 @@
+<html>
+  <head>
+    <style>
+      #canvas {
+        border: 1px solid #333;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width=500 height=500></canvas>
+    <br />
+    <br>
+    <input id="add2" type="submit" value="Graficar Puntos"/>
+    <input id="add" type="submit" value="Graficar KD-Tree DB Spam"/>
+    <input id="add3" type="submit" value="KNN"/>
+    <input id="rebuild" type="submit" value="Reconstruir tree">
+    <input id="reload" type="submit" value="Limpiar"/>
+    <p>Click para remover un punto</p>
+    
+    <script src="../jquery-1.7.2.min.js"></script>
+    <script src="../../kdTree.js"></script>
+    <script src="read_json_dr_converted.js"></script>
+    <script>
+      const reload = document.getElementById('reload');
+
+      reload.addEventListener('click', _ => { // el _ es para indicar la ausencia de parametros
+          location.reload();
+      });
+
+      // call points from spam descriptor with dimensional reduction
+      var spam_data = new SpamDataClass();
+      var spam_dr_2d_list = spam_data.c_spam_dr_2d_list
+      //console.log(spam_dr_2d_list);
+
+      var tree, canvas, ctx;
+      var points = [];
+
+      function distance(a, b) {
+
+        // Distancia euclidiana que usará el KNN
+        var dx = a.x - b.x;
+        var dy = a.y - b.y;
+        return dx*dx + dy*dy;
+      }
+
+      function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+              // Pick a remaining element...
+              randomIndex = Math.floor(Math.random() * currentIndex);
+              currentIndex -= 1;
+              // And swap it with the current element...
+              temporaryValue = array[currentIndex];
+              array[currentIndex] = array[randomIndex];
+              array[randomIndex] = temporaryValue;
+            }
+          return array;
+          }
+
+
+
+      function renderTree() {
+        ctx.clearRect(0,0,canvas.width, canvas.height);
+        render(tree.root, [[0, canvas.width], [0, canvas.height]]);
+        $("#factor").text(tree.balanceFactor());
+
+        function render(node, bounds) {
+          if(node == null) return;
+
+          ctx.beginPath();
+          ctx.fillStyle = "#00f";
+          ctx.beginPath();
+          ctx.arc(node.obj.x, node.obj.y, 5, 0, Math.PI*2);
+          ctx.closePath();
+          ctx.fill();
+
+          var leftBounds = [];
+          leftBounds[0] = bounds[0].slice(0);
+          leftBounds[1] = bounds[1].slice(0);
+
+          var rightBounds = [];
+          rightBounds[0] = bounds[0].slice(0);
+          rightBounds[1] = bounds[1].slice(0);
+
+          ctx.beginPath();
+          if(node.dimension == 0) { // was split on x value
+            ctx.moveTo(node.obj.x, bounds[1][0]);
+            ctx.lineTo(node.obj.x, bounds[1][1]);
+            leftBounds[0][1] = node.obj.x;
+            rightBounds[0][0] = node.obj.x;
+          } else {
+            ctx.moveTo(bounds[0][0], node.obj.y);
+            ctx.lineTo(bounds[0][1], node.obj.y);
+            leftBounds[1][1] = node.obj.y;
+            rightBounds[1][0] = node.obj.y;
+          }
+          ctx.closePath();
+          ctx.stroke();
+
+          ctx.fillStyle = "rgba(255,0,0,0.2)";
+          ctx.fillRect(bounds[0][0], bounds[1][0], bounds[0][1]-bounds[0][0], bounds[1][1]-bounds[1][0]);
+
+          render(node.left, leftBounds);
+          render(node.right, rightBounds);
+        }
+      }
+
+      $(function(){
+        canvas = $("#canvas")[0];
+        ctx = canvas.getContext('2d');
+
+        tree = new kdTree([], distance, ["x", "y"]);
+
+
+        var i = 1;                  //  set your counter to 1
+
+
+
+        $("#add").click(function(){
+          console.log(spam_dr_2d_list);
+          
+
+          for (let index = 0; index < spam_dr_2d_list.length; index++) {
+                      
+          var x=spam_dr_2d_list[index][1];
+          var y=spam_dr_2d_list[index][2];        
+
+          var point = {
+            x: Math.abs(x)*canvas.width*35,
+            y: Math.abs(y)*canvas.height*40
+          };
+          
+          points.push(point);  
+          tree.insert(point);
+          renderTree();
+   
+          }
+        
+          
+       
+
+          /*var point = {
+            x: Math.random()*canvas.width,
+            y: Math.random()*canvas.height
+          };
+          points.push(point);
+          tree.insert(point);
+          renderTree();
+
+          */
+        });
+        
+        $("#add2").click(function(){
+          var point = {
+            x: Math.random()*canvas.width,
+            y: Math.random()*canvas.height
+          };
+          points.push(point);
+          tree.insert(point);
+          renderTree();
+        });
+
+        $("#add3").click(function(){
+       
+          var data=[];
+
+          for (let index = 0; index < spam_dr_2d_list.length; index++) {
+
+
+            var newObject = {
+              label: spam_dr_2d_list[index][0], //5
+              x: spam_dr_2d_list[index][1],
+              y: spam_dr_2d_list[index][2]
+            }
+            data.push(newObject);
+            
+          }
+
+          //var shuffledData = shuffle(data);
+          var shuffledData= data // mix data
+          var train = shuffledData.slice(0, 259);
+
+          console.log(train); // our data
+
+          //Xmax,Ymax
+          var tree = new kdTree(train, distance, ["x", "y"]);
+      
+          var k = 7; // K neighbors ( Configuramos el número de vecinos más cercanos)
+          
+          //VARIABLES A PREDECIR:
+          //-0.02641380436087745, y: -0.019325203344133426  //classB
+          //0.03736936979802321, y: 0.10202618110572602 //class A
+          var pointToPredict= {
+              x: -0.02641380436087745,
+              y:  -0.019325203344133426};
+          
+          
+              console.log(pointToPredict);
+          
+          var nearest = tree.nearest(pointToPredict, k);
+          console.log(nearest);
+          
+          //Acumulador de cada clase spam y no spam
+          var contClassA=0;
+          var contClassB=0;
+          for (let index = 0; index < nearest.length; index++) {
+            
+            if(nearest[index][0].label=="Class A")
+            {
+              contClassA++;
+            }
+            else{
+              contClassB++;
+            }
+            
+          }
+          console.log("Resultado de clase A: ",contClassA);
+          console.log("Resultado de clase B: ",contClassB);
+          console.log("------RESULTADO-----");
+          if(contClassA>contClassB){
+            console.log("El punto pertenece a la clase A");
+          }
+          else{
+            console.log("El punto pertenece a la clase B");
+          }
+          
+        });
+
+
+
+        
+        
+        $("#rebuild").click(function(){
+          tree = new kdTree(points, distance, ["x", "y"]);
+          renderTree();
+        });
+
+        $("#canvas").click(function(e){
+          var offset = $(e.target).offset(),
+            offsetX = (e.offsetX || e.clientX - offset.left),
+            offsetY = (e.offsetY || e.clientY - offset.top);
+
+          var point = tree.nearest({x: offsetX, y: offsetY}, 1)[0][0];
+          points.splice(points.indexOf(point), 1);
+          tree.remove(point);
+          renderTree();
+        });
+      });
+    </script>
+  </body>
+</html>
