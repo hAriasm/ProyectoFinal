@@ -21,15 +21,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\csemail}{vmachacaa@unsa.edu.pe}
-\newcommand{\csdocente}{Vicente Machaca Arceda}
+\newcommand{\csdocente}{PhD(c) Vicente Machaca Arceda}
 \newcommand{\cscurso}{Algoritmos y Estructura de Datos}
 \newcommand{\csuniversidad}{Universidad Nacional de San Agustín}
 \newcommand{\csescuela}{Maestría en Ciencias de la Computación}
-\newcommand{\cspracnr}{04}
-\newcommand{\cstema}{Kd-tree}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage[english,spanish]{babel}
 \usepackage[utf8]{inputenc}
@@ -59,7 +57,7 @@
 \vspace*{10px}
 
 \begin{center}
-	\fontsize{17}{17} \textbf{ Práctica \cspracnr}
+	\fontsize{17}{17} \textbf{Proyecto Final}
 \end{center}
 
 %\centerline{\textbf{\underline{\Large Título: Informe de revisión del estado del arte}}}
@@ -71,16 +69,6 @@
 		\textbf{DOCENTE} & \textbf{CARRERA} & \textbf{CURSO} \\
 		\hline
 		\csdocente       & \csescuela       & \cscurso       \\
-		\hline
-	\end{tabular}
-\end{table}
-
-\begin{table}[h]
-	\begin{tabular}{|x{4.7cm}|x{4.8cm}|x{4.8cm}|}
-		\hline
-		\textbf{PRÁCTICA} & \textbf{TEMA} & \textbf{DURACIÓN} \\
-		\hline
-		\cspracnr         & \cstema       & --                \\
 		\hline
 	\end{tabular}
 \end{table}
@@ -98,170 +86,52 @@
 \end{itemize}
 
 \section{Repositorio GitHub}
-URL Github: \href{https://github.com/hAriasm/Practica4_ayed}{Repositorio Práctica 4 AyED}
+URL Github: \href{https://github.com/hAriasm/ProyectoFinal}{Repositorio Proyecto Final}
 
 \section{Video de Exposición en YouTube}
 URL YouTube: \href{https://youtube.com}{Video de Exposición en YouTube}
 
 \clearpage
 \section{Marco Teórico}
-\subsection{KD-Tree}
+\subsection{Detección de Publicidad Engañosa}
 
-\subsubsection{Definición}
+\subsubsection{Descripción del Proyecto}
 \paragraph{}
-Un KD-Tree (también llamado árbol K-dimensional) es un árbol de búsqueda binaria donde los datos en cada nodo son un punto K-dimensional en el espacio. En resumen, es una estructura de datos de partición de espacio (detalles a continuación) para organizar puntos en un espacio K-Dimensional.
+El impacto de la pandemia en la sociedad ha sido palpable en muchos ámbitos. Especialmente se ha notado un crecimiento exponencial del teletrabajo y del uso masivo de medios de comunicación digitales tanto a nivel personal como profesional (videoconferencias, chats, herramientas colaborativas, etc.). Aun así, el correo electrónico sigue ocupando su posición de liderazgo como el medio de comunicación más usado, situándose el tráfico global diario en 2020 por encima de los 300 billones. Por tanto, es, sin duda, el vector de ataque preferido por los ciberdelincuentes, provocando pérdidas billonarias, por ejemplo, en ataques de tipo business email compromise.
 
-Un nodo que no es una hoja en el árbol K-D divide el espacio en dos partes, llamadas medios espacios.
+La identificación y defensa frente a ‘emails’ maliciosos es uno de los mayores retos de la ciberseguridad empresarial
 
-Los puntos a la izquierda de este espacio están representados por el subárbol izquierdo de ese nodo y los puntos a la derecha del espacio están representados por el subárbol derecho. Pronto estaremos explicando el concepto de cómo se divide el espacio y se forma el árbol.
+La identificación y defensa frente a emails maliciosos continúa siendo uno de los mayores retos de la ciberseguridad empresarial hoy día. No obstante, el informe sobre Ciberamanezas y tendencias 2020 del CCN-CERT arroja una serie de conclusiones importantes que marcarán la pauta en las estrategias de ciberseguridad de las empresas. Entre otras, menciona que los cibercriminales utilizan activamente técnicas de Inteligencia Artificial (IA) para perpetrar sus ataques, lo que incrementa el riesgo exponencialmente y recrudece las amenazas.
 
-En aras de la simplicidad, entendamos un árbol 2-D con un ejemplo.
+Otro documento de ENISA sobre ataques de phishing aporta un dato muy revelador: la ciberdelincuencia basada en la ingeniería social o hacking humano se ha amplificado un 600 por ciento durante la pandemia. Hay claramente, por tanto, un crecimiento significativo y alarmante.
 
-La raíz tendría un plano alineado con el eje x, los hijos de la raíz tendrían ambos planos alineados con el eje y, los nietos de la raíz tendrían todos planos alineados con el eje x, y los bisnietos de la raíz tendrían todos planos alineados con el eje y, y así sucesivamente.
+Pero el informe también aporta otro dato curioso, y es que el 30 por ciento de los ataques de phishing se producen en lunes. Esto pone de manifiesto que la ciberdelincuencia es una industria perfectamente organizada y planificada que no deja nada al azar, aplicando incluso técnicas de influencia propias del marketing para maximizar sus resultados.
 
-\subsubsection{Generalización}
+Las empresas, concluye el dosier, necesitan la implementación de técnicas de IA para defenderse en igualdad de condiciones.
+
+\subsubsection{Problema y Solución}
 \paragraph{}
-Numeremos los planos como 0, 1, 2, …(K – 1). Del ejemplo anterior, es bastante claro que un punto (nodo) en la profundidad D tendrá un plano alineado donde A se calcula como:
+En el mundo de la ciberseguridad, la IA tiene una doble vertiente: es a la vez problema y solución, ya que se emplea tanto para el ataque como para la defensa. Gracias a los avances tecnológicos que han propiciado un aumento enorme en la velocidad de procesamiento, soluciones basadas en Machine Learning o Deep Learning son altamente eficaces en sus propósitos.
 
-A = D mod K
+Toda solución de ciberseguridad basada en IA debe contemplar desde el principio aspectos tan importantes como la hoja de ruta a seguir, qué objetivos queremos alcanzar y en qué ámbito queremos aplicarla. Un ejemplo destacado es su utilización para mejorar las capacidades a nivel defensivo de un Blue Team, de un centro de operaciones de seguridad (SOC) o de un centro de respuesta a incidentes con objeto de anticiparnos y detectar de forma temprana correos electrónicos maliciosos.
 
-\subsubsection{¿Cómo determinar si un punto estará en el subárbol izquierdo o en el subárbol derecho?}
-\paragraph{}
-Si el nodo raíz esta alineado en el plano A, el subárbol izquierdo contendrá todos los puntos cuyas coordenadas en ese plano sean más pequeñas que las del nodo ráiz. De manera similar, el subárbol derecho contendrá todos los puntos cuyas coordenadas en ese plano sean mayores-iguales que las del nodo raíz.
+En el mundo de la ciberseguridad, la Inteligencia Artificial tiene una doble vertiente: es a la vez problema y solución, ya que se emplea tanto para el ataque como para la defensa
 
-\subsubsection{Creación de un árbol 2-D}
-\paragraph{}
-Considere los siguientes puntos en un plano 2-D:
-(3, 6), (17, 15), (13, 15), (6, 12), (9, 1), (2, 7), (10, 19). De acuerdo a la figura \ref{fig:ejercicio_01}
+Sin embargo, para entender este ecosistema tecnológico, necesitamos tener claras algunas definiciones básicas: Inteligencia Artificial como la capacidad de una máquina para realizar tareas cognitivas humanas como percibir, aprender, razonar y resolver problemas. Dentro de este ámbito, existen dos técnicas que funcionan con paradigmas y modelos distintos pero complementarios: Machine Learning y Deep Learning. Machine Learning como solución matemática (estadística) que permite detectar patrones y hacer predicciones en base a un conocimiento previo. Y Deep Learning con base en una red neuronal artificial que le permite tener un alto grado de comprensión de los problemas para resolverlos de forma autónoma.
 
-\begin{enumerate}
-	\item Insertar (3, 6): dado que el árbol está vacío, conviértalo en el nodo raíz.
-	\item Insertar (17, 15): compararlo con el punto del nodo raíz. Dado que el nodo raíz está alineado con X, el valor de la coordenada X se comparará para determinar si se encuentra en el subárbol derecho o en el subárbol izquierdo. Este punto estará alineado con Y.
-	\item Insertar (13, 15): el valor X de este punto es mayor que el valor X del punto en el nodo raíz. Entonces, esto estará en el subárbol derecho de (3, 6). Nuevamente compare el valor Y de este punto con el valor Y del punto (17, 15) (¿Por qué?). Como son iguales, este punto estará en el subárbol derecho de (17, 15). Este punto estará alineado con X.
-	\item Insertar (6, 12): el valor X de este punto es mayor que el valor X del punto en el nodo raíz. Entonces, esto estará en el subárbol derecho de (3, 6). Nuevamente compare el valor Y de este punto con el valor Y del punto (17, 15) (¿Por qué?). Como 12 < 15, este punto estará en el subárbol izquierdo de (17, 15). Este punto estará alineado con X.
-	\item Insertar (9, 1): De manera similar, este punto estará a la derecha de (6, 12).
-	\item Insertar (2, 7): De manera similar, este punto estará a la izquierda de (3, 6).
-	\item Inserta (10, 19): De manera similar, este punto estará a la izquierda de (13, 15).
-\end{enumerate}
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.8\textwidth]{img/kdtree_1.png}
-	\caption{Nodos en KD-Tree}
-	\label{fig:kdtree_01}
-\end{figure}
-
-\subsubsection{¿Cómo se divide el espacio?}
-\paragraph{}
-Los 7 puntos se trazarán en el plano X-Y de la siguiente manera:
-
-\begin{enumerate}
-	\item El punto (3, 6) dividirá el espacio en dos partes: Dibujar la línea X = 3.
-	\item El punto (2, 7) dividirá el espacio a la izquierda de la línea X = 3 en dos partes horizontalmente. Dibuja la línea Y = 7 a la izquierda de la línea X = 3.
-	\item El punto (17, 15) dividirá el espacio a la derecha de la línea X = 3 en dos partes horizontalmente. Dibuja la línea Y = 15 a la derecha de la línea X = 3.
-	\item El punto (6, 12) dividirá el espacio debajo de la línea Y = 15 ya la derecha de la línea X = 3 en dos partes. Dibuja la línea X = 6 a la derecha de la línea X = 3 y debajo de la línea Y = 15.
-	\item El punto (13, 15) dividirá el espacio debajo de la línea Y = 15 ya la derecha de la línea X = 6 en dos partes. Dibuja la línea X = 13 a la derecha de la línea X = 6 y debajo de la línea Y = 15.
-	\item El punto (9, 1) dividirá el espacio entre las líneas X = 3, X = 6 e Y = 15 en dos partes. Dibuja la línea Y = 1 entre las líneas X = 3 y X = 13.
-	\item El punto (10, 19) dividirá el espacio a la derecha de la línea X = 3 y arriba de la línea Y = 15 en dos partes. Dibuja la línea Y = 19 a la derecha de la línea X = 3 y arriba de la línea Y = 15.
-\end{enumerate}
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.8\textwidth]{img/kdtree_2.png}
-	\caption{División del espacio en KD-Tree}
-	\label{fig:kdtree_02}
-\end{figure}
+Con estas definiciones en mente, la utilización de IA para capacitar los centros de operaciones de seguridad o similares tiene un caso de uso muy interesante para automatizar el análisis basado en el comportamiento de grandes cantidades de correos electrónicos en el menor tiempo posible, de cara a la predicción y anticipación. Pero no hablamos de un escaneo al estilo tradicional; para eso ya existen herramientas comerciales que se encargan de hacerlo y nos protegen razonablemente bien. Se trata de complementar este tipo de defensa con el análisis basado en el comportamiento para poder defendernos frente a lo desconocido.
 
 \clearpage
-\subsection{KNN}
-\subsubsection{Definición}
+\section{Programa}
+
+\subsection{Descripcion del Programa}
 \paragraph{}
-K-Nearest Neighbors es uno de los algoritmos de clasificación más básicos pero esenciales en Machine Learning. Pertenece al dominio de aprendizaje supervisado y encuentra una intensa aplicación en el reconocimiento de patrones, minería de datos y detección de intrusos.
-Es ampliamente disponible en escenarios de la vida real ya que no es paramétrico, lo que significa que no hace suposiciones subyacentes sobre la distribución de datos (a diferencia de otros algoritmos como GMM, que asume una distribución gaussiana de los datos dados) .
-Nos dan unos datos previos (también llamados datos de entrenamiento), que clasifican las coordenadas en grupos identificados por un atributo.
-Como ejemplo, considere la figura \ref{fig:knn_01} que muestra una tabla de puntos de datos que contienen dos características:
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\textwidth]{img/knn_01.png}
-	\caption{Datos de entrenamiento en KNN}
-	\label{fig:knn_01}
-\end{figure}
-
-Ahora, dado otro conjunto de puntos de datos (también llamados datos de prueba), asigne estos puntos a un grupo analizando el conjunto de entrenamiento. Tenga en cuenta que los puntos no clasificados están marcados como 'Blanco', de acuerdo la la figura \ref{fig:knn_02}
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\textwidth]{img/knn_02.png}
-	\caption{Datos de prueba en KNN}
-	\label{fig:knn_02}
-\end{figure}
-
-\subsubsection{Intuición}
-Si trazamos estos puntos en un gráfico, podemos ubicar algunos grupos o grupos. Ahora, dado un punto sin clasificar, podemos asignarlo a un grupo observando a qué grupo pertenecen sus vecinos más cercanos. Esto significa que un punto cercano a un grupo de puntos clasificados como 'Rojo' tiene una mayor probabilidad de ser clasificado como "Rojo".
-Intuitivamente, podemos ver que el primer punto (2.5, 7) debe clasificarse como 'Verde' y el segundo punto (5.5, 4.5) debe clasificarse como 'Rojo'.
-
-\subsubsection{Algoritmo}
-Sea m el número de muestras de datos de entrenamiento. Sea p un punto desconocido.
-
-\begin{enumerate}
-	\item Almacene las muestras de entrenamiento en una matriz de puntos de datos arr[ ]. Esto significa que cada elemento de esta matriz representa una tupla (x, y).
-	\item Haz el conjunto S de las K distancias más pequeñas obtenidas. Cada una de estas distancias corresponde a un punto de datos ya clasificado.
-	\item Devuelve la etiqueta mayoritaria entre S.
-\end{enumerate}
-
-\paragraph{}
-K se puede mantener como un número impar para que podamos calcular una clara mayoría en el caso de que solo sean posibles dos grupos (por ejemplo, rojo/azul). Con el aumento de K, obtenemos límites más suaves y definidos a través de diferentes clasificaciones. Además, la precisión del clasificador anterior aumenta a medida que aumentamos la cantidad de puntos de datos en el conjunto de entrenamiento.
-
-\section{Ejercicios}
-
-\subsection{Ejercicio N° 1}
-El la imagen \ref{fig:ejercicio_01} se presenta la creación del archivo html.
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\textwidth]{img/ejercicio_01.png}
-	\caption{Archivo html}
-	\label{fig:ejercicio_01}
-\end{figure}
 
 \clearpage
-\subsection{Ejercicio N° 2}
-\begin{itemize}
-	\item En la figura \ref{fig:ejercicio_02_build_kdtree} se muestra la funcion \textbf{build\_kdtree}, que construye el KD-Tree y retorna el nodo raiz.
-\end{itemize}
+\subsection{Partes del Programa}
+\subsubsection{Interfaz html}
+En la imagen \ref{fig:ejercicio_03} se evalua los resultados después de crear el archivo \textit{sketch.js}
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\textwidth]{img/ejercicio_02_build_kdtree.png}
-	\caption{Nodo raiz en el KD-Tree}
-	\label{fig:ejercicio_02_build_kdtree}
-\end{figure}
-
-\begin{itemize}
-	\item En la figura \ref{fig:ejercicio_02_getheight} se muestra el resultado de la funcion \textbf{getHeight}, que retorna la altura de un arbol KD-Tree.
-\end{itemize}
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\textwidth]{img/ejercicio_02_getheight.png}
-	\caption{Altura del arbol KD-Tree}
-	\label{fig:ejercicio_02_getheight}
-\end{figure}
-
-\begin{itemize}
-	\item En la figura \ref{fig:ejercicio_02_generate_dot} se muestra el resultado de la funcion \textbf{generate\_dot}, que genera al arbol KD-Tree en formato dot.
-\end{itemize}
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\textwidth]{img/ejercicio_02_generate_dot.png}
-	\caption{Altura del arbol KD-Tree}
-	\label{fig:ejercicio_02_generate_dot}
-\end{figure}
-
-\clearpage
-\subsection{Ejercicio N° 3}
-El la imagen \ref{fig:ejercicio_03} se evalua los resultados después de crear el archivo \textit{sketch.js}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\textwidth]{img/ejercicio_03.png}
@@ -270,10 +140,9 @@ El la imagen \ref{fig:ejercicio_03} se evalua los resultados después de crear e
 \end{figure}
 
 \clearpage
-\subsection{Ejercicio N° 4}
-\begin{itemize}
-	\item En la figura \ref{fig:ejercicio_04_closest_point_brute_force} se muestra la implementación de la función \textit{closest\_point\_force\_brute}.
-\end{itemize}
+\subsubsection{Algoritmo kdtree}
+En la figura \ref{fig:ejercicio_04_closest_point_brute_force} se muestra la implementación de la función \textit{closest\_point\_force\_brute}.
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\textwidth]{img/ejercicio_04_closest_point_brute_force.png}
@@ -281,21 +150,10 @@ El la imagen \ref{fig:ejercicio_03} se evalua los resultados después de crear e
 	\label{fig:ejercicio_04_closest_point_brute_force}
 \end{figure}
 
-\begin{itemize}
-	\item En la figura \ref{fig:ejercicio_04_naive_closest} se muestra la implementación de la función \textit{naive\_closest}.
-\end{itemize}
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\textwidth]{img/jercicio_04_naive_closest.png}
-	\caption{Implementación de la función \textit{closest\_point\_force\_brute}}
-	\label{fig:jercicio_04_naive_closest}
-\end{figure}
-
 \clearpage
-\subsection{Ejercicio N° 5}
-\begin{itemize}
-	\item En la figura \ref{fig:ejercicio_05_closest_point_brute_force} se muestra evaluación de datos con la función \textit{closest\_point\_force\_brute}.
-\end{itemize}
+\subsubsection{Algoritmo Descriptor "Bolsa de Palabras"}
+En la figura \ref{fig:ejercicio_05_closest_point_brute_force} se muestra evaluación de datos con la función \textit{closest\_point\_force\_brute}.
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\textwidth]{img/ejercicio_05_closest_point_brute_force.png}
@@ -303,87 +161,23 @@ El la imagen \ref{fig:ejercicio_03} se evalua los resultados después de crear e
 	\label{fig:ejercicio_05_closest_point_brute_force}
 \end{figure}
 
-\begin{itemize}
-	\item En la figura \ref{fig:ejercicio_05_naive_closest} se muestra evaluación de datos con la función \textit{naive\_closest}.
-\end{itemize}
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\textwidth]{img/jercicio_05_naive_closest.png}
-	\caption{Evaluación de datos con la función \textit{naive\_closest}}
-	\label{fig:jercicio_05_naive_closest}
-\end{figure}
-
 \clearpage
-\subsection{Ejercicio N° 6}
-\begin{itemize}
-	\item En la figura \ref{fig:ejercicio_06_closest_point_brute_force} se muestra evaluación de datos con la función \textit{closest\_point\_force\_brute}.
-\end{itemize}
+\subsubsection{Algoritmo Reductor de Dimensiones "MDS"}
+En la figura \ref{fig:ejercicio_05_closest_point_brute_force} se muestra evaluación de datos con la función \textit{closest\_point\_force\_brute}.
+
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.7\textwidth]{img/ejercicio_06_closest_point_brute_force.png}
+	\includegraphics[width=0.7\textwidth]{img/ejercicio_05_closest_point_brute_force.png}
 	\caption{Evaluación de datos con la función \textit{closest\_point\_force\_brute}}
-	\label{fig:ejercicio_06_closest_point_brute_force}
-\end{figure}
-
-\begin{itemize}
-	\item En la figura \ref{fig:ejercicio_06_naive_closest} se muestra evaluación de datos con la función \textit{naive\_closest}.
-\end{itemize}
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\textwidth]{img/jercicio_06_naive_closest.png}
-	\caption{Evaluación de datos con la función \textit{naive\_closest}}
-	\label{fig:jercicio_06_naive_closest}
-\end{figure}
-
-\clearpage
-\subsection{Ejercicio N° 7}
-El la figura \ref{fig:ejercicio_07} se muestra el resultado de la implementación de la función \textit{closest\_point}.
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.8\textwidth]{img/ejercicio_07.png}
-	\caption{Función \textit{closest\_point}}
-	\label{fig:ejercicio_07}
-\end{figure}
-
-\clearpage
-\subsection{Ejercicio N° 8}
-El la figura \ref{fig:ejercicio_08} se muestra el resultado de la implementación de la función KNN, que retorna los k puntos mas cercanos a un punto.
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.8\textwidth]{img/ejercicio_08.png}
-	\caption{Función KNN, que retorna k puntos mas cercanos}
-	\label{fig:ejercicio_08}
-\end{figure}
-
-\clearpage
-\subsection{Ejercicio N° 9}
-El la figura \ref{fig:ejercicio_09} se muestra el resultado de la implementación de la función \textit{range\_query\_circle} de KD-Tree
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.8\textwidth]{img/ejercicio_09.png}
-	\caption{Función \textit{range\_query\_circle} de KD-Tree}
-	\label{fig:ejercicio_09}
-\end{figure}
-
-\clearpage
-\subsection{Ejercicio N° 10}
-El la figura \ref{fig:ejercicio_10} se muestra el resultado de la implementación de la función \textit{range\_query\_rec} de KD-Tree
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.8\textwidth]{img/ejercicio_10.png}
-	\caption{Función \textit{range\_query\_rec} de KD-Tree}
-	\label{fig:ejercicio_10}
+	\label{fig:ejercicio_05_closest_point_brute_force}
 \end{figure}
 
 \clearpage
 \section{Conclusiones}
 \begin{itemize}
-	\item Los tiempos tiempos de ejecución de la función \textit{closest\_point} es mas rápida que la función \textit{closest\_point\_force\_brute}
-	\item La función \textit{naive\_closest} en algunas ocasiones no brinda el dato correcto.
-	\item La función \textit{closest\_point} se basa en la función \textit{naive\_closest} pero haciendo mejoras para determación del valor buscado de forma correcta.
 	\item 
-	\item De la bibliografía revisada, se concluye que las aplicaciones más comunes para los QuadTree y OcTree son el Procesamiento de imágenes, generación de mallas e indexado espacial.
-	\item Las estructuras octree son usadas mayormente para partir un espacio tridimensional, dividiéndolo recursivamente en ocho octantes, siendo análogas tridimensionales de los quadtree bidimensionales.
+	\item 
+	\item 
 \end{itemize}
 
 \section{Referencias}
@@ -393,7 +187,8 @@ El la figura \ref{fig:ejercicio_10} se muestra el resultado de la implementació
 	\item W. Cunto, G. Lau, y Ph. Flajolet, “Analysis of kd-trees: kd-trees improved by local reorganizations”, In F. Dehne, J. R. Sack y N. Santoro editors, Work, Algorithms and Data Structures, 1989, Volumen 382, 24$–$38.
 	\item Andrew W. Moore, “An Introductory tutorial on kd-trees”, Carnegie Mellon University, awm@cs.cmu.edu, 1992. http://www.autonlab.org.
 	\item Luc Devroye, Nicholas Broutin, Ketan Dalal y Erin McLeish, “The kdtreap”, Personal Communication.
-	\item \href{https://p5js.org/es/libraries/}{P5.js}
+	\item \href{https://www.redseguridad.com/revistas/red/095/58/index.html}{Redseguridad}
+	\item \href{https://www.ccn-cert.cni.es/informes/informes-ccn-cert-publicos/5377-ccn-cert-ia-13-20-ciberamenazas-y-tendencias-edicion-2020/file.html}{ccn-cert}
 	\item \href{https://www.geeksforgeeks.org/}{Geeksforgeeks}
 \end{enumerate}
 
