@@ -1,8 +1,6 @@
 k = 2;
 let output = "";
 
-
-
 class BPQ {
   constructor(capacity) {
     this.capacity = capacity;
@@ -227,7 +225,6 @@ function inOrder(node) {
     }
   }
 }
-
 
 function generate_dot(node) {
   // const fs = require("fs");
