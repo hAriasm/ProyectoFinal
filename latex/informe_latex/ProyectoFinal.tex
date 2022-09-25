@@ -61,7 +61,7 @@
 \end{center}
 \newline
 \begin{center}
-	\fontsize{17}{17} \textbf{Detección de Tuits Ofensivos y no Ofensivos}
+	\fontsize{17}{17} \textbf{Detección de Tweets Ofensivos y No Ofensivos}
 \end{center}
 
 %\centerline{\textbf{\underline{\Large Título: Informe de revisión del estado del arte}}}
@@ -97,7 +97,7 @@ URL YouTube: \href{https://youtube.com}{Video de Exposición en YouTube}
 
 \clearpage
 \section{Marco Teórico}
-\subsection{Detección de Tuits Ofensivos y no Ofensivos}
+\subsection{Detección de Tweets Ofensivos y No Ofensivos}
 
 \subsubsection{Introducción}
 \paragraph{}
@@ -111,16 +111,16 @@ Por lo tanto en el presente trabajo se propone el desarrollo de un método que u
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.5\textwidth]{img/tuits_ofensivos.png}
+	\includegraphics[width=0.5\textwidth]{img/tweets_ofensivos.png}
 	\caption{Ejemplos de mensajes ofensivos}
-	\label{fig:tuits_ofensivos}
+	\label{fig:tweets_ofensivos}
 \end{figure}
 
 \clearpage
 \subsubsection{Alcance y Limitaciones}
 \paragraph{}
-En este trabajo se abarca el diseño e implementación y de un programa para detectar lenguaje ofensivo en español dentro de la red social Twitter
-El conjunto de datos utilizado proviene de foros de discusión sobre comentarios publicados en la red social Twiter (Tuits). Estos 'Tuits' fueron recuperados de diferentes publicaciones y se fueron clasificando en tuits 'ofensivos' y 'no ofensivos'
+En este trabajo se abarca el diseño e implementación y de un programa para detectar lenguaje ofensivo dentro de la red social Twitter
+El conjunto de datos utilizado proviene de foros de discusión sobre comentarios publicados en la red social Twiter (tweets). Estos 'tweets' fueron recuperados de diferentes publicaciones y se fueron clasificando en tweets 'ofensivos' y 'no ofensivos'
 
 Para el desarrollo de la solución se trabajará con un descriptor llamado 'Bolsa de palabras' el cual realizará el trabajo de convertir determinadas palabras en vectores para que se puedan trabajar; seguidamente usaremos un reductor de dimensiones 'MDS' con la finalidad de reducir las dimensiones de los vectores generados con el descriptor y de esta manera pasar a la manipulacion de los mismos con el uso del algoritmo de KNN donde se tendrá una etapa de aprendizaje con ejemplos reconocidos de forma manual (al cual llamaremos aprendizaje) para despues pasar al modo pruebas con datos nuevos y aleatorios donde el algoritmo KNN realizará la clasificación de las entradas. 
 
