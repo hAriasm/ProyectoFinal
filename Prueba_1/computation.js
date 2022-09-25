@@ -28,7 +28,7 @@ var tweet_class = [];
 var data = fs.readFileSync("base_datos/training-tweets.csv", "utf-8");
 data = data.split("\r\n");
 for (let i = 0; i < data.length - 1; i++) {
-    console.log(data[i]);
+   // console.log(data[i]);
     data[i] = data[i].split(";");
     tweets.push(data[i][1]);
     tweet_class.push(data[i][2]);
