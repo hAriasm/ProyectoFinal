@@ -1,9 +1,10 @@
 //browserify -t brfs practice_4/KNN/examples/mutable/read_json_dr.js  > practice_4/KNN/examples/mutable/read_json_dr_converted.js
 //browserify -t brfs read_json_dr.js > read_json_dr_converted.js
 //const fs = require('./fs');
-var fs = require("fs");
+//var fs = require("fs");
 
 //import fs from 'fs';
+import * as fs from 'fs' ; 
 
 class SpamData {
     

@@ -2028,6 +2028,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 class SpamData {
     constructor() {
         this.c_spam_dr_2d_list = this.read_json_descriptor_dr();
+
     }
 
     read_json_descriptor_dr() {
