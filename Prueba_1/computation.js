@@ -8,37 +8,36 @@
 //console.log(loc)
 
 // *** llamando a las funciones que me generan la bolsa de palabras ***
-var mimir = require('./index'),
-    bow = mimir.bow,
-    dict = mimir.dict;
+var mimir = require("./index"),
+  bow = mimir.bow,
+  dict = mimir.dict;
 
-
-console.log('\n---------- Bolsa de Palabras -----------------\n');
+console.log("\n---------- Bolsa de Palabras -----------------\n");
 
 // *** leemos cada archivo mail y se coloca como un elemento de la lista ***
 var fs = require("fs");
 var path = require("path");
 
-const base_text_path = "./base_datos/mails/"
-var filenames = fs.readdirSync(path.join(__dirname, base_text_path))
+const base_text_path = "./base_datos/mails/";
+var filenames = fs.readdirSync(path.join(__dirname, base_text_path));
 
 // *** leyendo la data ***
-var body_mails = []
-var spam_mails = []
+var body_mails = [];
+var spam_mails = [];
 for (const file in filenames) {
-    if (filenames[file].slice(0, 5) == "spmsg") {
-        spam_mails.push("Class B") // es spam = Clase B
-    } else {
-        spam_mails.push("Class A") // no es spam = Clase A
-    }
-    ;
-    text = fs.readFileSync(path.join(__dirname, base_text_path + filenames[file])).toString('utf-8');
-    email_body = text.split("\n")[2]; // la 3ra linea contiene el cuerpo principal del mensaje
-    body_mails.push(email_body)
+  if (filenames[file].slice(0, 5) == "spmsg") {
+    spam_mails.push("Class B"); // es spam = Clase B
+  } else {
+    spam_mails.push("Class A"); // no es spam = Clase A
+  }
+  text = fs
+    .readFileSync(path.join(__dirname, base_text_path + filenames[file]))
+    .toString("utf-8");
+  email_body = text.split("\n")[2]; // la 3ra linea contiene el cuerpo principal del mensaje
+  body_mails.push(email_body);
 }
 //console.log(body_mails)
 //console.log(spam_mails)
-
 
 // *** calculando universo de palabras ***
 var vocabulary = dict(body_mails); //vocabulario
@@ -46,50 +45,44 @@ var vocabulary = dict(body_mails); //vocabulario
 //console.log(bow(body_mails[25], vocabulary).reduce((a, b) => a + b, 0));
 
 // *** calculando la bolsa de palabras (bow) para cada email ***
-var bow_list = []
+var bow_list = [];
 for (const i in body_mails) {
-    bow_list.push(bow(body_mails[i], vocabulary))
+  bow_list.push(bow(body_mails[i], vocabulary));
 }
 //console.log(bow_list);
 
-
 // *** MDS - Dimensionality reduction ***
 //import * as druid from "@saehrimnir/druidjs";
-druid = require("@saehrimnir/druidjs")
+druid = require("@saehrimnir/druidjs");
 let matrix = druid.Matrix.from(bow_list); //matriz (# documentos , # palabras en el vocabulario calculado)
-console.log(matrix);
+
+console.log("matrix con druidjs: " + matrix);
 
 // Dimensionality reduction (dr)
-var new_dimensions = 2
-my_dr = new druid.MDS(matrix, new_dimensions)
-var bow_all_dr = my_dr.transform().to2dArray // computamos la reduccion de dimensionalidad y obtenemos un vector de 2 dimensiones
+var new_dimensions = 2;
+my_dr = new druid.MDS(matrix, new_dimensions);
+var bow_all_dr = my_dr.transform().to2dArray; // computamos la reduccion de dimensionalidad y obtenemos un vector de 2 dimensiones
+console.log("matrix con transform: " + bow_all_dr);
 
-var all_mails_output_list = []
+var all_mails_output_list = [];
 for (i in bow_all_dr) {
-    var one_mail = []
-    one_mail.push(spam_mails[i]);
-    for (let j = 0; j < new_dimensions; j++) {
-        one_mail.push(bow_all_dr[i][j]);
-    }
-    all_mails_output_list.push(one_mail)
+  var one_mail = [];
+  one_mail.push(spam_mails[i]);
+  for (let j = 0; j < new_dimensions; j++) {
+    one_mail.push(bow_all_dr[i][j]);
+  }
+  all_mails_output_list.push(one_mail);
 }
-
 
 // ***  Obtenemos la salida final de la lista para el uso en KDTree y KNN
 // Formato [class(0:no_spam, 1:spam),dimension1,dimension2] --> [[1,2.234,53.23124], [2,123.1234,123,4.123], ..]
-console.log(all_mails_output_list)
-
+console.log(all_mails_output_list);
 
 // write JSON string to a file
 const data = JSON.stringify(all_mails_output_list);
-fs.writeFile('final_spam_dr_2d.json', data, (err) => {
-    if (err) {
-        throw err;
-    }
-    console.log("JSON data is saved.");
+fs.writeFile("final_spam_dr_2d.json", data, (err) => {
+  if (err) {
+    throw err;
+  }
+  console.log("JSON data is saved.");
 });
-
-
-
-
-
