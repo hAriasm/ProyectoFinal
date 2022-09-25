@@ -27,7 +27,7 @@
         }
       });
     });
-
+    //console.log(keys);
     return {
       words: keys,
       dict: dict
@@ -72,5 +72,5 @@
     tfidf: tfidf,
     tokenize: tokenize
   };
-
+ 
 }());
