@@ -1,5 +1,9 @@
 {
   "dependencies": {
-    "@saehrimnir/druidjs": "^0.6.3"
+    "@saehrimnir/druidjs": "^0.6.3",
+    "fs-js": "^1.0.6"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.21"
   }
 }
