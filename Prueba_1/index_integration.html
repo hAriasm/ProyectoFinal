@@ -7,7 +7,7 @@
     </style>
   </head>
   <body>
-    <canvas id="canvas" width=500 height=500></canvas>
+    <canvas id="canvas" width=600 height=600></canvas>
     <br />
     <br>
     <input id="add2" type="submit" value="Graficar Puntos"/>
@@ -20,7 +20,7 @@
     <script src="jquery-1.7.2.min.js"></script>
     <script src="kdTree.js"></script>    
 
-    <script  src="read_json_dr_converted.js"></script> 
+    <script   src="read_json_dr_converted.js"></script> 
 
     <script>
       const reload = document.getElementById('reload');
@@ -30,6 +30,9 @@
       });
 
       // call points from spam descriptor with dimensional reduction
+
+
+
       var spam_data = new SpamDataClass();
       var spam_dr_2d_list = spam_data.c_spam_dr_2d_list
       //console.log(spam_dr_2d_list);
@@ -129,13 +132,16 @@
           var y=spam_dr_2d_list[index][2];        
 
           var point = {
-            x: Math.abs(x)*canvas.width*35,
-            y: Math.abs(y)*canvas.height*40
+           // x: Math.abs(x)*canvas.width*35,   
+            x: x*750 + 300,
+           // y: Math.abs(y)*canvas.height*40
+            y: y*1750 + 300,
           };
           
           points.push(point);  
           tree.insert(point);
           renderTree();
+         // console.log(points);
    
           }
         
