@@ -91,7 +91,7 @@ for (i in bow_all_dr) {
 
 // write JSON string to a file
 const data2 = JSON.stringify(tweets_matrix);
-fs.writeFile("final_spam_dr_2d.json", data2, (err) => {
+fs.writeFile("final_offtweets_2d.json", data2, (err) => {
     if (err) {
         throw err;
     }
