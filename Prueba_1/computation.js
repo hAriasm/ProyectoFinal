@@ -19,7 +19,7 @@ console.log('\n---------- Bolsa de Palabras -----------------\n');
 var fs = require("fs");
 var path = require("path");
 
-const base_text_path = "../../base_datos/mails/"
+const base_text_path = "./base_datos/mails/"
 var filenames = fs.readdirSync(path.join(__dirname, base_text_path))
 
 // *** leyendo la data ***
