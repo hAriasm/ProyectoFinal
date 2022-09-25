@@ -25,11 +25,11 @@ var path = require("path");
 var tweets = [];
 var tweet_class = [];
 
-var data = fs.readFileSync("base_datos/training-tweets.csv", "utf-8");
+var data = fs.readFileSync("base_datos/training-tweets.txt", "utf-8");
 data = data.split("\r\n");
-for (let i = 0; i < data.length - 1; i++) {
-   // console.log(data[i]);
-    data[i] = data[i].split(";");
+for (let i = 0; i < data.length; i++) {
+    // console.log(data);
+    data[i] = data[i].split("|");
     tweets.push(data[i][1]);
     tweet_class.push(data[i][2]);
 }
@@ -73,7 +73,7 @@ let matrix = druid.Matrix.from(bow_list); //matriz (# documentos , # palabras en
 var new_dimensions = 2;
 my_dr = new druid.MDS(matrix, new_dimensions);
 var bow_all_dr = my_dr.transform().to2dArray; // computamos la reduccion de dimensionalidad y obtenemos un vector de 2 dimensiones
-console.log("matrix con transform: " + bow_all_dr);
+// console.log("matrix con transform: " + bow_all_dr);
 
 var tweets_matrix = [];
 for (i in bow_all_dr) {
@@ -87,7 +87,7 @@ for (i in bow_all_dr) {
 
 // ***  Obtenemos la salida final de la lista para el uso en KDTree y KNN
 // Formato [class(0:no_spam, 1:spam),dimension1,dimension2] --> [[1,2.234,53.23124], [2,123.1234,123,4.123], ..]
-console.log(tweets_matrix);
+// console.log(tweets_matrix);
 
 // write JSON string to a file
 const data2 = JSON.stringify(tweets_matrix);
