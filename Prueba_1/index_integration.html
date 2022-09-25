@@ -18,8 +18,10 @@
     <p>Click para remover un punto</p>
     
     <script src="jquery-1.7.2.min.js"></script>
-    <script src="kdTree.js"></script>
+    <script src="kdTree.js"></script>    
+
     <script src="read_json_dr_converted.js"></script>
+
     <script>
       const reload = document.getElementById('reload');
 
@@ -164,6 +166,7 @@
         $("#add3").click(function(){
        
           var data=[];
+          console.log("spam_dr_2d_list: " + spam_dr_2d_list);
 
           for (let index = 0; index < spam_dr_2d_list.length; index++) {
 

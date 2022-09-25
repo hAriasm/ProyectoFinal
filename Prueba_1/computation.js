@@ -43,6 +43,7 @@ for (const file in filenames) {
 var vocabulary = dict(body_mails); //vocabulario
 //console.log(bow(body_mails[25], vocabulary));
 //console.log(bow(body_mails[25], vocabulary).reduce((a, b) => a + b, 0));
+ //console.log("vocabulary: " +  vocabulary);
 
 // *** calculando la bolsa de palabras (bow) para cada email ***
 var bow_list = [];
@@ -56,7 +57,7 @@ for (const i in body_mails) {
 druid = require("@saehrimnir/druidjs");
 let matrix = druid.Matrix.from(bow_list); //matriz (# documentos , # palabras en el vocabulario calculado)
 
-console.log("matrix con druidjs: " + matrix);
+//console.log("matrix con druidjs: " + matrix);
 
 // Dimensionality reduction (dr)
 var new_dimensions = 2;
