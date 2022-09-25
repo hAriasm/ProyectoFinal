@@ -109,12 +109,21 @@ Con base en lo anterior, los enfoques ya propuestos se encuentran limitados.
 
 Por lo tanto en el presente trabajo se propone el desarrollo de un método que utiliza un diccionario de insultos expandido para realizar un etiquetado automático y un enfoque basado en aprendizaje el cual se encarga de identificar mensajes ofensivos en función de lo aprendido con los datos etiquetados automáticamente.
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/tuits_ofensivos.png}
+	\caption{Ejemplos de mensajes ofensivos}
+	\label{fig:tuits_ofensivos}
+\end{figure}
+
+\clearpage
 \subsubsection{Alcance y Limitaciones}
 \paragraph{}
 En este trabajo se abarca el diseño e implementación y de un programa para detectar lenguaje ofensivo en español dentro de la red social Twitter
 El conjunto de datos utilizado proviene de foros de discusión sobre comentarios publicados en la red social Twiter (Tuits). Estos 'Tuits' fueron recuperados de diferentes publicaciones y se fueron clasificando en tuits 'ofensivos' y 'no ofensivos'
 
-Para el desarrollo de la solución se trabajará con un descriptor llamado 'Bolsa de palabras' el cual realizará el trabajo de convertir determinadas palabras en vectores para que se puedan trabajar; seguidamente usaremos un reductor de dimentsiones 'MDS' para 
+Para el desarrollo de la solución se trabajará con un descriptor llamado 'Bolsa de palabras' el cual realizará el trabajo de convertir determinadas palabras en vectores para que se puedan trabajar; seguidamente usaremos un reductor de dimensiones 'MDS' con la finalidad de reducir las dimensiones de los vectores generados con el descriptor y de esta manera pasar a la manipulacion de los mismos con el uso del algoritmo de KNN donde se tendrá una etapa de aprendizaje con ejemplos reconocidos de forma manual (al cual llamaremos aprendizaje) para despues pasar al modo pruebas con datos nuevos y aleatorios donde el algoritmo KNN realizará la clasificación de las entradas. 
+
 \subsubsection{Descriptor: Bolsa de Palabras}
 \paragraph{}
 BoVW es actualmente un método popular para el reconocimiento de objetos y escenas en visión por computadoras. A una imagen se le extraen los rasgos locales y pasa a ser considerada como una bolsa de rasgos (bag of features), es decir, ignorando las relaciones espaciales entre ellos. Como desventaja podemos mencionar que este no cuenta con un mecanismo eficiente y efectivo de codificación de la información espacial que existe para los rasgos. Un método basado en el BoVW clásico consiste en las siguientes etapas:
