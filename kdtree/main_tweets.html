@@ -63,16 +63,34 @@
 
     <script>
 
-        var tweets_matrix = JSON.parse(data);
+        var trained_data = JSON.parse(data);
+        knnClassifier(trained_data);
 
-        
-        knnClassifier(tweets_matrix);
-        
+
         function knnClassifier(data) {
-            console.log("knn classifier");
-            var root = build_kdtree(data);
-            console.log(root);
 
+            var y = [0.001, 0.003];
+
+            var root = build_kdtree(trained_data);
+
+            var cantidadK = 7;
+            var knn = findKnn(root, y, parseInt(cantidadK)).nearestNeighbors;
+            console.log(knn);
+            var countHOF = 0, countNOT = 0;
+
+            for (let i = 0; i < knn.length; i++) {
+                console.log(knn[i].point);
+                if (knn[i].value === "HOF") {
+                    countHOF++;
+                } else {
+                    countNOT++;
+                }
+            }
+            if (countHOF > countNOT) {
+                console.log("Este tweet es OFENSIVO");
+            } else {
+                console.log("Este tweet NO es OFENSIVO");
+            }
         }
     </script>
 
