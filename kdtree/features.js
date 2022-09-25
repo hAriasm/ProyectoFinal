@@ -41,12 +41,12 @@ var bow_all_dr = my_dr.transform().to2dArray; // computamos la reduccion de dime
 
 var tweets_matrix = [];
 for (i in bow_all_dr) {
-  var one_mail = [];
-  one_mail.push(tweet_class[i]);
+  var one_tweet = [];
+  one_tweet.push(tweet_class[i]);
   for (let j = 0; j < new_dimensions; j++) {
-    one_mail.push(bow_all_dr[i][j]);
+    one_tweet.push(bow_all_dr[i][j]);
   }
-  tweets_matrix.push(one_mail);
+  tweets_matrix.push(one_tweet);
 }
 
 // ***  Obtenemos la salida final de la lista para el uso en KDTree y KNN
@@ -58,7 +58,7 @@ const data2 = JSON.stringify(tweets_matrix);
 fs.writeFile("final_tweets_2d.js", "data = '" + data2 + "'", (err) => {
   if (err) {
     throw err;
+    console.log("JSON data is saved.");
   }
-  console.log("JSON data is saved.");
 });
 

@@ -65,13 +65,14 @@
 
         var tweets_matrix = JSON.parse(data);
 
-        console.log(tweets_matrix);
-
+        
         knnClassifier(tweets_matrix);
-
+        
         function knnClassifier(data) {
             console.log("knn classifier");
             var root = build_kdtree(data);
+            console.log(root);
+
         }
     </script>
 
