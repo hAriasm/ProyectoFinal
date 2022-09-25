@@ -45,10 +45,11 @@ Object.defineProperty(BPQ.prototype, "values", {
 
 class Node {
   constructor(point, axis) {
-    this.point = point;
+    this.point = [point[1], point[2]];
     this.left = null;
     this.right = null;
     this.axis = axis;
+    this.value = point[0];
   }
 }
 
