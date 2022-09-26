@@ -49,7 +49,7 @@ function classifier(data, data_test) {
   var root = build_kdtree(data);
 
   for (let i = 0; i < data_test.length; i++) {
-    console.log(data_test[i]);
+    console.log([data_test[i][1], data_test[i][2]]);
     knnClassifier(root, [data_test[i][1], data_test[i][2]]);
   }
 }
@@ -90,7 +90,7 @@ function draw() {
   for (let i = 0; i < data_test.length; i++) {
     let x = data_test[i][1] ;
     let y = data_test[i][2] ;
-    drawPoint([x, y], 255, 255, 255);
+    drawPoint([x, y], 0, 0, 255, 9);
   }
 
   // background(0);
@@ -112,7 +112,7 @@ function draw() {
 }
 
 
-function drawPoint(point, r = 255, g = 255, b = 255, size = 7) {
+function drawPoint(point, r = 255, g = 255, b = 255, size = 6 ) {
   var x = point[0];
   var y = point[1];
 
