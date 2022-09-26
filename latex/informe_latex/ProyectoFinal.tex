@@ -93,7 +93,7 @@
 URL Github: \href{https://github.com/hAriasm/ProyectoFinal}{Repositorio Proyecto Final}
 
 \section{Video de Exposición en YouTube}
-URL YouTube: \href{https://youtube.com}{Video de Exposición en YouTube}
+URL YouTube: \href{https://youtu.be/I20meShflcM}{Video de Exposición en YouTube}
 
 \clearpage
 \section{Marco Teórico}
@@ -201,29 +201,11 @@ K se puede mantener como un número impar para que podamos calcular una clara ma
 
 \subsection{Descripcion del Programa}
 \paragraph{}
+Para el desarrollo de la solución se trabajará con un descriptor llamado 'Bolsa de palabras' el cual realizará el trabajo de convertir determinadas palabras en vectores para que se puedan trabajar; seguidamente usaremos un reductor de dimensiones 'MDS' con la finalidad de reducir las dimensiones de los vectores generados con el descriptor y de esta manera pasar a la manipulacion de los mismos con el uso del algoritmo de KNN donde se tendrá una etapa de aprendizaje con ejemplos reconocidos de forma manual (al cual llamaremos aprendizaje) para despues pasar al modo pruebas con datos nuevos y aleatorios donde el algoritmo KNN realizará la clasificación de las entradas.
 
 \clearpage
 \subsection{Partes del Programa}
-\subsubsection{Interfaz HTML}
-En la figura \ref{fig:html_1} se presenta el diseño de la interfaz gráfica desaarrollada en lenguaje \textit{HTML}.
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.5\textwidth]{img/html_1.png}
-	\caption{Interfaz del programa en \textit{.html}}
-	\label{fig:html_1}
-\end{figure}
-
-En la figura \ref{fig:html_2} se muestra parte del codigo desarrollada para la ejecucion de la interfaz en \textit{HTML}.
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\textwidth]{img/html_2.png}
-	\caption{Código en \textit{.html} para el desarrollo de la interfaz del programa }
-	\label{fig:html_2}
-\end{figure}
-
-\clearpage
 \subsubsection{Algoritmo KNN}
 En la figura \ref{fig:knn_03} se muestra el código desarrollado para la ejecución del algoritmo \textit{KNN}
 
@@ -257,11 +239,29 @@ En la figura \ref{fig:mds} se muestra el codigo del algoritmo MDS\textit{closest
 \end{figure}
 
 \clearpage
+\subsubsection{Ejecución del Programa}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.6\textwidth]{img/knn_05.png}
+	\caption{Representacion grafica de la clasificación de tweets ofensivos (puntos rojos) y no ofensivos (puntos verdes) por \textit{KNN}}
+	\label{fig:knn_05}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.6\textwidth]{img/knn_06.png}
+	\caption{Clasificación de tweets de prueba (representados por puntos azules) \textit{KNN}}
+	\label{fig:knn_06}
+\end{figure}
+
+\clearpage
 \section{Conclusiones}
 \begin{itemize}
-	\item 
-	\item 
-	\item 
+	\item Durante la pruebas del KNN Classifier se pudo observar que hay casos en los que el clasificador falla, sobre todo en las zonas en las que se solapan los tweets ofensivos y no ofensivos.
+	\item Los algoritmos de clasificación no son 100% precisos, tienen un grado de certeza que varía dependiendo de la data utilizada durante el entrenamiento, de los algoritmos de reducción de dimensiones aplicados, y de las características a tomar en cuenta
+	\item Usando la reducción de dimensiones MDS se logró condicionar la matriz obtenida de la Bolsa de Palabras, lo cual permitió utilizar el algoritmo KDtree y KNN para 2 dimensiones
+	
 \end{itemize}
 
 \section{Referencias}
