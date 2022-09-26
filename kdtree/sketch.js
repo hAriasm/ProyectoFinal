@@ -55,7 +55,7 @@ function classifier(data, data_test) {
 }
 
 function knnClassifier(root, pointY) {
-  var cantidadK = 1;
+  var cantidadK = 7;
   var knn = findKnn(root, pointY, parseInt(cantidadK)).nearestNeighbors;
   // console.log(knn);
   var countHOF = 0,
