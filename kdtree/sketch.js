@@ -5,7 +5,8 @@ let width = 800;
 let height = 600;
 let scalex = 10;
 let scaley = 5;
-var data_points = [];
+var data_train = [];
+var data_test = [];
 
 function setup() {
   createCanvas(width, height);
@@ -20,17 +21,6 @@ function setup() {
     }
   }
 }
-
-function drawPoint(point, r = 255, g = 255, b = 255) {
-  var x = point[0];
-  var y = point[1];
-
-  fill(r, g, b);
-  circle((x * width) / maxx, height - (y * height) / maxy, 10); // 200 -y para q se dibuje apropiadamente
-  // textSize(16);
-  // text(x + ", " + y, (x * width) / maxx + 5, height - (y * height) / maxy - 5);
-}
-
 // function graficarKNN() {
 //   crearCanvasPuntos();
 
@@ -53,7 +43,8 @@ function drawPoint(point, r = 255, g = 255, b = 255) {
 
 function classifier(data, data_test) {
   console.log("cantidad total de entrenamiento: " + data.length);
-  data_points = data;
+  data_train = data;
+  data_test = data_test;
 
   var root = build_kdtree(data);
 
@@ -96,6 +87,12 @@ function draw() {
     }
   }
 
+  for (let i = 0; i < data_test.length; i++) {
+    let x = data_test[i][1] * 600 + 50;
+    let y = data_test[i][2] * 800 + 50;
+    drawPoint([x, y], 255, 255, 255);
+  }
+
   // background(0);
 
   // noFill();
@@ -112,4 +109,15 @@ function draw() {
   //   strokeWeight(2);
   //   drawPoint(p)
   // }
+}
+
+
+function drawPoint(point, r = 255, g = 255, b = 255, size = 7) {
+  var x = point[0];
+  var y = point[1];
+
+  fill(r, g, b);
+  circle((x * width) / maxx, height - (y * height) / maxy, size); // 200 -y para q se dibuje apropiadamente
+  // textSize(6);
+  // text(x + ", " + y, (x * width) / maxx + 5, height - (y * height) / maxy - 5);
 }
