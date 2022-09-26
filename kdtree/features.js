@@ -10,7 +10,7 @@ var tweets = [];
 var tweet_class = [];
 
 /***lectura y clasificacion de tweets */
-var data = fs.readFileSync("data/training-tweets.txt", "utf-8");
+var data = fs.readFileSync("data/training-tweets_500.txt", "utf-8");
 data = data.split("\r\n");
 for (let i = 0; i < data.length; i++) {
   // console.log(data);

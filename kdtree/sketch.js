@@ -5,9 +5,9 @@ let width = 800;
 let height = 600;
 let scalex = 10;
 let scaley = 5;
+var data_points = [];
 
 function setup() {
-  root = null;
 
   createCanvas(width, height);
 
@@ -57,15 +57,9 @@ function drawPoint(point, r = 255, g = 255, b = 255) {
 function classifier(data, data_test) {
 
   console.log("cantidad total de entrenamiento: " + data.length);
+  data_points = data;
 
   var root = build_kdtree(data);
-
-  for(let i = 0; i < data.length; i++) {
-    console.log([data[i][1] * 1000 + 300, data[i][2] * 1000 + 300]);
-    drawPoint([data[i][1] * 1000 + 300, data[i][2] * 1000 + 300]);
-  }
-
-
 
   for (let i = 0; i < data_test.length; i++) {
     console.log(data_test[i]);
@@ -97,6 +91,18 @@ function knnClassifier(root, pointY) {
 
 
 function draw() {
+
+
+
+  for (let i = 0; i < data_points.length; i++) {
+    let x = data_points[i][1] * 1000 + 100;
+    let y = data_points[i][2] * 1200 + 80;
+    if (data_points[i][0] === "HOF") {
+      drawPoint([x, y], 255, 0, 0);
+    } else {
+      drawPoint([x, y], 0, 255, 0);
+    }
+  }
 
   // background(0);
 
