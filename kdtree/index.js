@@ -62,7 +62,7 @@
     return Math.log(textlist.length / (1 + wordInDocsCount(word, textlist)));
   }
 
-  function tfidf(word, text, textlist) {
+  function tfidf(word, text, textlist) {      //expresar la importancia de una palabra en un documento
     return tf(word, text) * idf(word, textlist);
   }
 
