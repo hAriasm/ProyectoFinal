@@ -55,7 +55,7 @@ for (i in bow_all_dr) {
 
 // write JSON string to a file
 const data2 = JSON.stringify(tweets_matrix);
-fs.writeFile("./data/final_tweets_2d.js", "data = '" + data2 + "'", (err) => {
+fs.writeFile("./data/final_tweets_2d.js", "data = '" + data2 + "'; ", (err) => {
   if (err) {
     throw err;
     console.log("JSON data is saved.");

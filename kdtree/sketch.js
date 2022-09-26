@@ -1,7 +1,5 @@
 var maxx = 250;
 var maxy = 200;
-var data = [];
-var pointP = [140, 90];
 var root;
 let width = 800;
 let height = 600;
@@ -10,9 +8,7 @@ let scaley = 5;
 
 function setup() {
   root = null;
-  data = null;
 
-  createCanvas();
   createCanvas(width, height);
 
   background(0);
@@ -27,15 +23,14 @@ function setup() {
 
 }
 
-
 function drawPoint(point, r = 255, g = 255, b = 255) {
   var x = point[0];
   var y = point[1];
 
   fill(r, g, b);
   circle((x * width) / maxx, height - (y * height) / maxy, 10); // 200 -y para q se dibuje apropiadamente
-  textSize(16);
-  text(x + ", " + y, (x * width) / maxx + 5, height - (y * height) / maxy - 5);
+  // textSize(16);
+  // text(x + ", " + y, (x * width) / maxx + 5, height - (y * height) / maxy - 5);
 }
 
 // function graficarKNN() {
@@ -64,6 +59,13 @@ function classifier(data, data_test) {
   console.log("cantidad total de entrenamiento: " + data.length);
 
   var root = build_kdtree(data);
+
+  for(let i = 0; i < data.length; i++) {
+    console.log([data[i][1] * 1000 + 300, data[i][2] * 1000 + 300]);
+    drawPoint([data[i][1] * 1000 + 300, data[i][2] * 1000 + 300]);
+  }
+
+
 
   for (let i = 0; i < data_test.length; i++) {
     console.log(data_test[i]);
@@ -96,9 +98,7 @@ function knnClassifier(root, pointY) {
 
 function draw() {
 
-  background(0);
-
-  classifier();
+  // background(0);
 
   // noFill();
   // stroke(0, 255, 0);
