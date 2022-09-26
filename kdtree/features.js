@@ -27,8 +27,7 @@ var bow_list = [];
 for (const i in tweets) {
   bow_list.push(bow(tweets[i], vocabulary));
 }
-//console.log(bow_list);
-
+ 
 // *** reduccion con tipo -> MDS ***
 druid = require("@saehrimnir/druidjs");
 let matrix = druid.Matrix.from(bow_list); //matriz (# documentos , # palabras en el vocabulario calculado)
@@ -44,17 +43,12 @@ for (i in bow_all_dr) {
   one_tweet.push(tweet_class[i]);
   for (let j = 0; j < new_dimensions; j++) {
     if (tweet_class[i] === "HOF")
-      one_tweet.push(bow_all_dr[i][j] * 500 + 100);
+      one_tweet.push(functionOfensivo(j));
     else 
-      one_tweet.push(bow_all_dr[i][j] * 1000 + 100);
+      one_tweet.push(functionNoOfensivo(j));
   }
   tweets_matrix.push(one_tweet);
-}
-
-// ***  Obtenemos la salida final de la lista para el uso en KDTree y KNN
-// Formato [class(0:no_spam, 1:spam),dimension1,dimension2] --> [[1,2.234,53.23124], [2,123.1234,123,4.123], ..]
-// console.log(tweets_matrix);
-
+} 
 // write JSON string to a file
 const data2 = JSON.stringify(tweets_matrix);
 fs.writeFile("./data/final_tweets_2d.js", "data = '" + data2 + "'; ", (err) => {
@@ -63,3 +57,11 @@ fs.writeFile("./data/final_tweets_2d.js", "data = '" + data2 + "'; ", (err) => {
     console.log("JSON data is saved.");
   }
 });
+function functionNoOfensivo(j) {
+  return bow_all_dr[i][j] * 1000 + 100;
+}
+
+function functionOfensivo(j) {
+  return bow_all_dr[i][j] * 500 + 100;
+}
+
