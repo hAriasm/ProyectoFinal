@@ -9,6 +9,7 @@
     <script src=" kdtree.js "> </script>
     <script src=" sketch.js "> </script>
     <script type="text/javascript" src="data/final_tweets_2d.js"></script>
+    <script type="text/javascript" src="data/test_tweets_2d.js"></script>
  </head>
 
 <body>
@@ -24,22 +25,27 @@
     <script>
 
         var trained_data = JSON.parse(data);
-        knnClassifier(trained_data);
 
+        console.log("valor de entrenamiento: " + trained_data.length);
 
-        function knnClassifier(data) {
+        var root = build_kdtree(trained_data);
 
-            var y = [0.001, 0.003];
+        var dataT = JSON.parse(data_test);
 
-            var root = build_kdtree(trained_data);
+        for(let i = 0; i < dataT.length; i++) {
+            console.log(dataT[i]);
+            knnClassifier(root, [dataT[i][1], dataT[i][2]]);
+        }
 
-            var cantidadK = 7;
-            var knn = findKnn(root, y, parseInt(cantidadK)).nearestNeighbors;
-            console.log(knn);
+        function knnClassifier(root, pointY) {
+
+            var cantidadK = 1;
+            var knn = findKnn(root, pointY, parseInt(cantidadK)).nearestNeighbors;
+            // console.log(knn);
             var countHOF = 0, countNOT = 0;
 
             for (let i = 0; i < knn.length; i++) {
-                console.log(knn[i].point);
+                // console.log(knn[i].point + ", " + knn[i].value);
                 if (knn[i].value === "HOF") {
                     countHOF++;
                 } else {
