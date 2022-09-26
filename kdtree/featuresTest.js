@@ -2,7 +2,7 @@ var mimir = require("./index"),
   bow = mimir.bow,
   dict = mimir.dict;
 
-console.log("\n  *** Bolsa de Palabras ***  \n");
+console.log("\n  *** Descriptor: Bolsa de Palabras ***  \n");
 
 var fs = require("fs");
 
@@ -13,7 +13,7 @@ var tweet_class = [];
 var data = fs.readFileSync("data/test-tweets.txt", "utf-8");
 data = data.split("\r\n");
 for (let i = 0; i < data.length; i++) {
-  // console.log(data);
+ 
   data[i] = data[i].split("|");
   tweets.push(data[i][1]);
   tweet_class.push(data[i][2]);
@@ -27,7 +27,7 @@ var bow_list = [];
 for (const i in tweets) {
   bow_list.push(bow(tweets[i], vocabulary));
 }
-//console.log(bow_list);
+
 
 // *** reduccion con tipo -> MDS ***
 druid = require("@saehrimnir/druidjs");
@@ -52,7 +52,7 @@ for (i in bow_all_dr) {
   tweets_matrix.push(one_tweet);
 }
  
-// write JSON string to a file
+// Escribir de JSON string a un file
 const data2 = JSON.stringify(tweets_matrix);
 fs.writeFile("./data/test_tweets_2d.js", "data_test = '" + data2 + "'; ", (err) => {
   if (err) {
