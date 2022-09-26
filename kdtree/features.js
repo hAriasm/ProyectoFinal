@@ -2,7 +2,7 @@ var mimir = require("./index"),
   bow = mimir.bow,
   dict = mimir.dict;
 
-console.log("\n  *** Bolsa de Palabras ***  \n");
+console.log("\n  *** Descriptor: Bolsa de Palabras ***  \n");
 
 var fs = require("fs");
 
@@ -13,7 +13,7 @@ var tweet_class = [];
 var data = fs.readFileSync("data/training-tweets_500.txt", "utf-8");
 data = data.split("\r\n");
 for (let i = 0; i < data.length; i++) {
-  // console.log(data);
+  
   data[i] = data[i].split("|");
   tweets.push(data[i][1]);
   tweet_class.push(data[i][2]);
@@ -27,7 +27,7 @@ var bow_list = [];
 for (const i in tweets) {
   bow_list.push(bow(tweets[i], vocabulary));
 }
-//console.log(bow_list);
+
 
 // *** reduccion con tipo -> MDS ***
 druid = require("@saehrimnir/druidjs");
@@ -52,10 +52,8 @@ for (i in bow_all_dr) {
 }
 
 // ***  Obtenemos la salida final de la lista para el uso en KDTree y KNN
-// Formato [class(0:no_spam, 1:spam),dimension1,dimension2] --> [[1,2.234,53.23124], [2,123.1234,123,4.123], ..]
-// console.log(tweets_matrix);
 
-// write JSON string to a file
+// Escribir JSON string a un file
 const data2 = JSON.stringify(tweets_matrix);
 fs.writeFile("./data/final_tweets_2d.js", "data = '" + data2 + "'; ", (err) => {
   if (err) {
