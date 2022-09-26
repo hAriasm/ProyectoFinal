@@ -44,7 +44,10 @@ for (i in bow_all_dr) {
   var one_tweet = [];
   one_tweet.push(tweet_class[i]);
   for (let j = 0; j < new_dimensions; j++) {
-    one_tweet.push(bow_all_dr[i][j]);
+    if (tweet_class[i] === "HOF")
+    one_tweet.push(bow_all_dr[i][j] * 500 + 100);
+  else 
+    one_tweet.push(bow_all_dr[i][j] * 1000 + 100);
   }
   tweets_matrix.push(one_tweet);
 }

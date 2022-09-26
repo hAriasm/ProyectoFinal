@@ -9,7 +9,6 @@ var data_train = [];
 var data_test = [];
 
 function setup() {
-
   createCanvas(width, height);
 
   background(0);
@@ -21,7 +20,6 @@ function setup() {
       line(0, y, width, y);
     }
   }
-
 }
 // function graficarKNN() {
 //   crearCanvasPuntos();
@@ -43,9 +41,7 @@ function setup() {
 //   drawPoint(pointP, 0, 255, 0);
 // }
 
-
 function classifier(data, data_test) {
-
   console.log("cantidad total de entrenamiento: " + data.length);
   data_train = data;
   data_test = data_test;
@@ -59,11 +55,11 @@ function classifier(data, data_test) {
 }
 
 function knnClassifier(root, pointY) {
-
   var cantidadK = 1;
   var knn = findKnn(root, pointY, parseInt(cantidadK)).nearestNeighbors;
   // console.log(knn);
-  var countHOF = 0, countNOT = 0;
+  var countHOF = 0,
+    countNOT = 0;
 
   for (let i = 0; i < knn.length; i++) {
     // console.log(knn[i].point + ", " + knn[i].value);
@@ -80,12 +76,10 @@ function knnClassifier(root, pointY) {
   }
 }
 
-
 function draw() {
-
   for (let i = 0; i < data_train.length; i++) {
-    let x = data_train[i][1] * 1000 + 120;
-    let y = data_train[i][2] * 750 + 70;
+    let x = data_train[i][1];
+    let y = data_train[i][2];
     if (data_train[i][0] === "HOF") {
       drawPoint([x, y], 255, 0, 0);
     } else {
@@ -94,8 +88,8 @@ function draw() {
   }
 
   for (let i = 0; i < data_test.length; i++) {
-    let x = data_test[i][1] * 1000 + 120;
-    let y = data_test[i][2] * 750 + 70;
+    let x = data_test[i][1] ;
+    let y = data_test[i][2] ;
     drawPoint([x, y], 255, 255, 255);
   }
 
