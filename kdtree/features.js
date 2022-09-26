@@ -33,8 +33,7 @@ for (const i in tweets) {
 druid = require("@saehrimnir/druidjs");
 let matrix = druid.Matrix.from(bow_list); //matriz (# documentos , # palabras en el vocabulario calculado)
 
-
-// numero  de reducciones 
+// numero  de reducciones
 var new_dimensions = 2;
 my_dr = new druid.MDS(matrix, new_dimensions);
 var bow_all_dr = my_dr.transform().to2dArray; // computamos la reduccion de dimensionalidad y obtenemos un vector de 2 dimensiones
@@ -44,7 +43,10 @@ for (i in bow_all_dr) {
   var one_tweet = [];
   one_tweet.push(tweet_class[i]);
   for (let j = 0; j < new_dimensions; j++) {
-    one_tweet.push(bow_all_dr[i][j]);
+    if (tweet_class[i] === "HOF")
+      one_tweet.push(bow_all_dr[i][j] * 500 + 100);
+    else 
+      one_tweet.push(bow_all_dr[i][j] * 1000 + 100);
   }
   tweets_matrix.push(one_tweet);
 }
@@ -61,4 +63,3 @@ fs.writeFile("./data/final_tweets_2d.js", "data = '" + data2 + "'; ", (err) => {
     console.log("JSON data is saved.");
   }
 });
-
